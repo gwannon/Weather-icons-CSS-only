@@ -1,0 +1,248 @@
+/* Sun */
+.sun {
+  --color1: #f1bd00;
+  --color2: #fbf26e;
+  --colorbg: #edc61c;
+  position: relative;
+  display: inline-block;
+}
+
+.sun,
+.sun:before,
+.sun:after {
+  width: calc(var(--width) * 0.8);
+  height: calc(var(--width) * 0.8);
+  background: radial-gradient(
+    circle,
+    var(--colorbg) 0%,
+    var(--colorbg) 65%,
+    var(--color2) 66%,
+    var(--color1) 100%
+  );
+  --deg: 45deg;
+  transform: rotatez(var(--deg));
+  animation-name: moving;
+  animation-duration: 5.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.sun:before,
+.sun:after {
+  content: "";
+  position: absolute;
+  --deg: 60deg;
+  transform: rotatez(var(--deg));
+  top: 0;
+  left: 0;
+  animation-delay: 0.3s;
+}
+
+.sun:after {
+  --deg: -60deg;
+  transform: rotatez(var(--deg));
+  animation-delay: 0.6s;
+}
+
+@keyframes moving {
+  0% {
+    transform: rotatez(var(--deg));
+  }
+  50% {
+    transform: rotatez(calc(var(--deg) + 5deg));
+  }
+  100% {
+    transform: rotatez(var(--deg));
+  }
+}
+
+/* Cloud */
+.cloud {
+  --color1: #fff;
+  --color2: #84848f;
+  position: relative;
+  display: inline-block;
+  width: calc(var(--width) * 1.5);
+  height: calc(var(--width) * 0.6);
+  background: var(--color1);
+  border-radius: var(--width);
+  opacity: 0.95;
+  animation-name: opacity;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.sun + .cloud {
+  margin-top: calc(var(--width) * -0.3);
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0.95;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0.95;
+  }
+}
+
+.cloud:after,
+.cloud:before {
+  content: "";
+  position: absolute;
+  background-color: var(--color1);
+  width: calc(var(--width) * 0.6);
+  height: calc(var(--width) * 0.6);
+  border-radius: var(--width);
+  top: calc(var(--width) * -0.2);
+  left: calc(var(--width) * 0.3);
+  animation-name: moving2;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.cloud:before {
+  left: calc(var(--width) * 0.7);
+  animation-delay: 1s;
+}
+
+@keyframes moving2 {
+  0% {
+    top: calc(var(--width) * -0.2);
+  }
+  50% {
+    top: calc(var(--width) * -0.25);
+  }
+  100% {
+    top: calc(var(--width) * -0.2);
+  }
+}
+
+.dark,
+.dark:before,
+.dark:after {
+  background: var(--color2);
+}
+
+/* Storm */
+.storm {
+  --color1: #f1bd00;
+  --color2: #f9f2b2;
+  height: calc(var(--width) / 1.2);
+  display: inline-block;
+  width: calc(var(--width) / 1.8);
+  background: var(--color1);
+  clip-path: polygon(
+    25% 2%,
+    6% 31%,
+    24% 31%,
+    9% 59%,
+    25% 59%,
+    8% 100%,
+    82% 52%,
+    65% 53%,
+    91% 29%,
+    65% 29%,
+    92% 2%
+  );
+  animation-name: glowing;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.cloud + .storm {
+  margin-top: calc(var(--width) * -0.4);
+}
+
+@keyframes glowing {
+  0% {
+    background: var(--color1);
+  }
+  44% {
+    background: var(--color1);
+  }
+  49% {
+    background: var(--color2);
+  }
+  51% {
+    background: var(--color2);
+  }
+  56% {
+    background: var(--color1);
+  }
+  100% {
+    background: var(--color1);
+  }
+}
+
+.rain,
+.snow {
+  --color1: #00cdff;
+  height: calc(var(--width) * 0.5);
+  display: inline-block;
+  width: calc(var(--width) * 0.7);
+  opacity: 0.7;
+  clip-path: polygon(
+    20% 0%,
+    10% 50%,
+    20% 50%,
+    30% 0%,
+    35% 50%,
+    25% 100%,
+    35% 100%,
+    45% 50%,
+    65% 0%,
+    55% 50%,
+    65% 50%,
+    75% 50%,
+    65% 100%,
+    75% 100%,
+    85% 50%,
+    65% 50%,
+    75% 0%,
+    65% 0%,
+    45% 50%,
+    35% 50%,
+    30% 0%
+  );
+  animation-name: dropping;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+}
+
+.snow {
+  --color1: #fff;
+  height: calc(var(--width) * 0.3);
+  transform: skew(25deg);
+}
+
+.cloud + .rain {
+  margin-top: calc(var(--width) * -0.1);
+}
+
+@keyframes dropping {
+  @for $i from 0 through 100 {
+    #{$i}% {
+      background: linear-gradient(
+        180deg,
+        transparent 0%,
+        transparent calc(#{$i}% + 0%),
+        var(--color1) calc(#{$i}% + 1%),
+        var(--color1) calc(#{$i}% + 20%),
+        transparent calc(#{$i}% + 21%),
+        transparent calc(#{$i}% + 50%),
+        var(--color1) calc(#{$i}% + 51%),
+        var(--color1) calc(#{$i}% + 70%),
+        transparent calc(#{$i}% + 71%),
+        transparent calc(#{$i}% + 100%),
+      );
+    }
+  }
+}
+
