@@ -227,22 +227,34 @@
 }
 
 @keyframes dropping {
-  @for $i from 0 through 100 {
+  @for $i from 0 through 20 {
     #{$i}% {
       background: linear-gradient(
         180deg,
         transparent 0%,
         transparent calc(#{$i}% + 0%),
-        var(--color1) calc(#{$i}% + 1%),
+        var(--color1) calc(#{$i}% + 0.1%),
         var(--color1) calc(#{$i}% + 20%),
-        transparent calc(#{$i}% + 21%),
+        transparent calc(#{$i}% + 20.1%),
+        transparent 100%
+      );
+    }
+  }
+  @for $i from 21 through 100 {
+    #{$i}% {
+      background: linear-gradient(
+        180deg,
+        transparent 0%,
+        transparent calc(#{$i}% + 0%),
+        var(--color1) calc(#{$i}% + 0.1%),
+        var(--color1) calc(#{$i}% + 20%),
+        transparent calc(#{$i}% + 20.1%),
         transparent calc(#{$i}% + 50%),
-        var(--color1) calc(#{$i}% + 51%),
+        var(--color1) calc(#{$i}% + 50.1%),
         var(--color1) calc(#{$i}% + 70%),
-        transparent calc(#{$i}% + 71%),
-        transparent calc(#{$i}% + 100%),
+        transparent calc(#{$i}% + 70.1%),
+        transparent 100%
       );
     }
   }
 }
-
