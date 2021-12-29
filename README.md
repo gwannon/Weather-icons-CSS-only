@@ -9,10 +9,10 @@ Weather icons only with CSS
 * Dark Cloud + Rain
 * Cloud + Storm
 * Cloud + Snow
+* Fog
 
 Pending
 
-* Fog
 * Wind
 
 View online -> https://codepen.io/gwannon/pen/bGooqyO
