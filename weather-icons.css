@@ -1,3 +1,14 @@
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 15vw;
+  width: 15%;
+  overflow: hidden;
+  flex-wrap: nowrap;
+  flex-direction: column;
+}
+
 /* Sun */
 .sun {
   --color1: #f1bd00;
